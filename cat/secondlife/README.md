@@ -1,6 +1,3 @@
-[<< Back to home](https://devaldon.github.io/Aldon-Wiki/)
---
-
 Need some documentation about one of my second life apps?
 Pick one below. 
 
