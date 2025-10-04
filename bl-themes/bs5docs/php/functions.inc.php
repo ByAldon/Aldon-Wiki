@@ -1,6 +1,29 @@
 <?php
 defined( 'BLUDIT' ) || die( 'That did not work as expected.' );
-
+/*
+ * bs5docs theme for Bludit
+ *
+ * functions.inc.php (bs5docs)
+ * Copyright 2024 Joaquim Homrighausen; all rights reserved.
+ * Development sponsored by WebbPlatsen i Sverige AB, www.webbplatsen.se
+ *
+ * This file is part of bs5docs. bs5docs is free software.
+ *
+ * bs5docs is free software: you may redistribute it and/or modify it  under
+ * the terms of the GNU AFFERO GENERAL PUBLIC LICENSE v3 as published by the
+ * Free Software Foundation.
+ *
+ * bs5docs is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU AFFERO GENERAL PUBLIC LICENSE
+ * v3 for more details.
+ *
+ * You should have received a copy of the GNU AFFERO GENERAL PUBLIC LICENSE v3
+ * along with the bs5docs package. If not, write to:
+ *  The Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor
+ *  Boston, MA  02110-1301, USA.
+ */
 
 $bs5docs_locale = '';
 $bs5docs_timezone = '';
