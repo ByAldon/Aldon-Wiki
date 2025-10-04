@@ -15,5 +15,8 @@ Watch the roadmap
 ## Documentation
 Click here to read the Inworld Notes documentation. 
 
+## FAQ
+If you have a question, be sure to check the FAQ section first! 
+
 ## Security and Privacy
 Security and Privacy Overview
