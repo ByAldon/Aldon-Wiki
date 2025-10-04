@@ -14,7 +14,7 @@ In this section, you can discuss the product Inworld Notes. Share your thoughts,
 ## Roadmap
 
 What is coming?
-Watch the roadmap
+Watch the roadmap.
 
 ## Documentation
 
