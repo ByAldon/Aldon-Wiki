@@ -6,7 +6,7 @@ At Aldon, I am dedicated to developing innovative applications for the internet.
 
 ## Navigation
 - Wordpress and Wordpress Plugins/Themes.
-- Second Life
+- [Second Life](cat\secondlife.md)
 - Other applications
 
 ## Latest Updates
