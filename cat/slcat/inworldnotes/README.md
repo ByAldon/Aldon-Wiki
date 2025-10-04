@@ -11,3 +11,9 @@ Click here for the updates log.
 ## Roadmap
 What is coming?
 Watch the roadmap
+
+## Documentation
+Click here to read the Inworld Notes documentation. 
+
+## Security and Privacy
+Security and Privacy Overview
