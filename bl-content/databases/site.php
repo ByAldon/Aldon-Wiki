@@ -1,9 +1,9 @@
 <?php defined('BLUDIT') or die('Bludit CMS.'); ?>
 {
-    "title": "BLUDIT",
-    "slogan": "Welkom bij Bludit",
-    "description": "Gefeliciteerd! Bludit is nu ge\u00efnstalleerd.",
-    "footer": "Copyright \u00a9 2025",
+    "title": "Aldon WIKI",
+    "slogan": "",
+    "description": "",
+    "footer": "",
     "itemsPerPage": 6,
     "language": "nl_NL",
     "locale": "nl_NL",
@@ -37,5 +37,13 @@
     "titleFormatCategory": "{{category-name}} | {{site-title}}",
     "titleFormatTag": "{{tag-name}} | {{site-title}}",
     "imageRestrict": true,
-    "imageRelativeToAbsolute": false
+    "imageRelativeToAbsolute": false,
+    "mastodon": "",
+    "dribbble": "",
+    "vk": "",
+    "thumbnailWidth": 400,
+    "thumbnailHeight": 400,
+    "thumbnailQuality": 100,
+    "markdownParser": true,
+    "customFields": "[]"
 }
