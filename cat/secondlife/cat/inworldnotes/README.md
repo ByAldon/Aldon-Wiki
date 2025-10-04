@@ -12,15 +12,11 @@ In this section, you can discuss the product Inworld Notes. Share your thoughts,
 [Click here for the updates log](/cat/secondlife/cat/inworldnotes/updates).
 
 ## Roadmap
-
-<<<<<<< HEAD
 What is coming?
 Watch the roadmap.
 =======
 What is coming?<br>
 Watch the roadmap
-
-> > > > > > > 9e90d7ae1b7b54656410f462b8da2014f9fd8c62
 
 ## Documentation
 
