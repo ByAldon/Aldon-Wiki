@@ -13,4 +13,4 @@ At Aldon, I am dedicated to developing innovative applications for the internet.
 Stay tuned for the latest updates and new features! Check back regularly for announcements and improvements.
 
 ## Contact Me
-If you have any questions or need assistance, [please feel free to reach out to me](mailto:tickets@jolt-7oqd9p.p.tawk.email)please feel free to reach out to me. 
+If you have any questions or need assistance, [please feel free to reach out to me](mailto:tickets@jolt-7oqd9p.p.tawk.email). 
