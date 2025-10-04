@@ -13,7 +13,7 @@ In this section, you can discuss the product Inworld Notes. Share your thoughts,
 
 ## Roadmap
 
-What is coming?
+What is coming?<br>
 Watch the roadmap
 
 ## Documentation
