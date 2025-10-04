@@ -9,7 +9,7 @@ In this section, you can discuss the product Inworld Notes. Share your thoughts,
 
 ## Updates
 
-Click here for the updates log.
+[Click here for the updates log](cat/secondlife/cat/inworldnotes/updates).
 
 ## Roadmap
 
