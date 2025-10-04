@@ -1,16 +1,4 @@
-## Welcome to Aldon Wiki
-Welcome to the official Aldon Wiki! This is your go-to resource for information about my applications, tutorials, and community support.
+Need some documentation about one of my second life apps?
+Pick one below. 
 
-## About Me
-At Aldon, I am dedicated to developing innovative applications for the internet. My goal is to provide users with powerful tools and resources to enhance their online experiences. While not everything is open source, I always prioritize privacy in my work. 
-
-## Navigation
-- Wordpress and Wordpress Plugins/Themes.
-- Second Life
-- Other applications
-
-## Latest Updates
-Stay tuned for the latest updates and new features! Check back regularly for announcements and improvements.
-
-## Contact Me
-If you have any questions or need assistance, [please feel free to reach out to me](mailto:tickets@jolt-7oqd9p.p.tawk.email). 
+- [Inworld Notes](cat\slcat\inworldnotes\README.md)
