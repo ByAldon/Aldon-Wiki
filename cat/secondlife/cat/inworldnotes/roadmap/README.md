@@ -6,7 +6,7 @@ This is the roadmap for future updates.<br>*Please remember that not every plan 
 
 - **Make it possible to resize the HUD**
 
-- **Edit your notes**<br>Currently, **editing** your notes is not possible. I am working hard to add this feature.
+- **Edit your notes**<br>Currently, **<u>editing</u>** your notes is not possible. I am working hard to add this feature.
 
 - **Pick a date and time on your notes as a future reminder**<br>You can select a date and time for your specific notes to set a reminder for the future, so you won't forget about the note you made.
 
