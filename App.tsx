@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
-import Sidebar from './components/Sidebar';
-import ContentView from './components/ContentView';
-import { BookIcon } from './components/Icons';
-import type { Category, WikiPage } from './types';
+import Sidebar from './components/Sidebar.tsx';
+import ContentView from './components/ContentView.tsx';
+import { BookIcon } from './components/Icons.tsx';
+import type { Category, WikiPage } from './types.ts';
 
 
 const App = () => {
