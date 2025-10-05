@@ -1,6 +1,5 @@
-
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
-import type { WikiPage } from './types';
+import type { WikiPage, Category } from './types';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import Sidebar from './components/Sidebar';
 import ContentView from './components/ContentView';
@@ -15,9 +14,10 @@ This is your personal, Markdown-powered wiki. Everything you write here is saved
 ## How to Get Started
 
 1.  **Create a new page:** Click the "New Page" button in the sidebar.
-2.  **Write content:** Use Markdown syntax to format your text. You can create headings, lists, links, and more.
-3.  **Edit pages:** Click the "Edit" button on any page to make changes.
-4.  **AI Title Suggestions:** When editing, click the magic wand button next to the title to let AI suggest a title based on your content.
+2.  **Create a category:** Click the folder icon in the sidebar to create categories.
+3.  **Write content:** Use Markdown syntax to format your text. You can create headings, lists, links, and more.
+4.  **Edit pages:** Click the "Edit" button on any page to make changes and assign it to a category.
+5.  **AI Title Suggestions:** When editing, click the magic wand button next to the title to let AI suggest a title based on your content.
 
 ## What is Markdown?
 
@@ -30,46 +30,58 @@ Markdown is a lightweight markup language with plain-text-formatting syntax. It'
 Enjoy building your personal knowledge base!
 `;
 
+const UNCATEGORIZED_ID = 'uncategorized';
+
 const App: React.FC = () => {
   const [pages, setPages] = useLocalStorage<WikiPage[]>('aldon-wiki-pages', []);
+  const [categories, setCategories] = useLocalStorage<Category[]>('aldon-wiki-categories', []);
   const [activePageId, setActivePageId] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   useEffect(() => {
-    if (pages.length === 0) {
+    // Initialize default categories and pages if they don't exist
+    if (pages.length === 0 && categories.length === 0) {
+      const gettingStartedCategory: Category = { id: crypto.randomUUID(), name: 'Getting Started' };
+      const uncategorizedCategory: Category = { id: UNCATEGORIZED_ID, name: 'Uncategorized' };
+      
       const welcomePage: WikiPage = {
         id: crypto.randomUUID(),
         title: "Welcome!",
         content: initialContent,
+        categoryId: gettingStartedCategory.id,
       };
+
+      setCategories([gettingStartedCategory, uncategorizedCategory]);
       setPages([welcomePage]);
       setActivePageId(welcomePage.id);
     } else if (!activePageId && pages.length > 0) {
       setActivePageId(pages[0].id);
     }
-  }, [pages, setPages, activePageId]);
+  }, [pages, categories, setPages, setCategories, activePageId]);
   
   const activePage = useMemo(() => pages.find(p => p.id === activePageId), [pages, activePageId]);
+  const activeCategory = useMemo(() => categories.find(c => c.id === activePage?.categoryId), [categories, activePage]);
 
   const handleSelectPage = useCallback((id: string) => {
     setActivePageId(id);
     setIsEditing(false);
   }, []);
 
-  const handleCreateNewPage = useCallback(() => {
+  const handleCreateNewPage = useCallback((categoryId: string = UNCATEGORIZED_ID) => {
     const newPage: WikiPage = {
       id: crypto.randomUUID(),
       title: 'Untitled Page',
       content: '# New Page\n\nStart writing your content here.',
+      categoryId,
     };
     setPages(prevPages => [newPage, ...prevPages]);
     setActivePageId(newPage.id);
     setIsEditing(true);
   }, [setPages]);
 
-  const handleSavePage = useCallback((id: string, title: string, content: string) => {
+  const handleSavePage = useCallback((id: string, title: string, content: string, categoryId: string) => {
     setPages(prevPages =>
-      prevPages.map(p => (p.id === id ? { ...p, title, content } : p))
+      prevPages.map(p => (p.id === id ? { ...p, title, content, categoryId } : p))
     );
     setIsEditing(false);
   }, [setPages]);
@@ -85,13 +97,24 @@ const App: React.FC = () => {
     }
   }, [pages, activePageId, setPages]);
 
+  const handleCreateCategory = useCallback((name: string) => {
+    if (name && !categories.some(c => c.name.toLowerCase() === name.toLowerCase())) {
+        const newCategory: Category = { id: crypto.randomUUID(), name };
+        setCategories(prev => [...prev, newCategory]);
+    } else {
+        alert('Category name already exists or is empty.');
+    }
+  }, [categories, setCategories]);
+
   return (
     <div className="flex h-screen font-sans bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <Sidebar
         pages={pages}
+        categories={categories}
         activePageId={activePageId}
         onSelectPage={handleSelectPage}
-        onCreateNew={handleCreateNewPage}
+        onCreateNewPage={handleCreateNewPage}
+        onCreateNewCategory={handleCreateCategory}
       />
       <main className="flex-1 overflow-y-auto p-4 md:p-8">
         {activePage ? (
@@ -99,12 +122,14 @@ const App: React.FC = () => {
             <EditView
               key={activePage.id}
               page={activePage}
+              categories={categories}
               onSave={handleSavePage}
               onCancel={() => setIsEditing(false)}
             />
           ) : (
             <ContentView
               page={activePage}
+              categoryName={activeCategory?.name}
               onEdit={() => setIsEditing(true)}
               onDelete={handleDeletePage}
             />
@@ -115,7 +140,7 @@ const App: React.FC = () => {
               <h2 className="text-2xl font-bold mb-4">No pages yet</h2>
               <p className="mb-6">Click the button below to create your first page and start your wiki.</p>
               <button
-                onClick={handleCreateNewPage}
+                onClick={() => handleCreateNewPage()}
                 className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               >
                 <PlusIcon className="w-5 h-5 mr-2" />

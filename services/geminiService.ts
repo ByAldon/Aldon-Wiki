@@ -40,10 +40,18 @@ SUGGESTED TITLE:`;
         // A lower temperature is better for deterministic, factual tasks.
         temperature: 0.2,
         maxOutputTokens: 20,
+        // When using maxOutputTokens with gemini-2.5-flash, a thinkingBudget is required
+        // to reserve some tokens for the final output.
+        thinkingConfig: { thinkingBudget: 5 },
       }
     });
     
-    const suggestedTitle = response.text.trim();
+    const suggestedTitle = response.text?.trim();
+
+    if (!suggestedTitle) {
+      throw new Error("The AI returned an empty suggestion. The content might be inappropriate or the request failed.");
+    }
+
     // Clean up any potential markdown or quotes
     return suggestedTitle.replace(/["'*`#]/g, '');
 

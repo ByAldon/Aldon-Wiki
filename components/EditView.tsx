@@ -1,23 +1,24 @@
-
 import React, { useState } from 'react';
-import type { WikiPage } from '../types';
+import type { WikiPage, Category } from '../types';
 import { suggestTitle } from '../services/geminiService';
 import { SaveIcon, CancelIcon, SparklesIcon } from './Icons';
 
 interface EditViewProps {
   page: WikiPage;
-  onSave: (id: string, title: string, content: string) => void;
+  categories: Category[];
+  onSave: (id: string, title: string, content: string, categoryId: string) => void;
   onCancel: () => void;
 }
 
-const EditView: React.FC<EditViewProps> = ({ page, onSave, onCancel }) => {
+const EditView: React.FC<EditViewProps> = ({ page, categories, onSave, onCancel }) => {
   const [title, setTitle] = useState(page.title);
   const [content, setContent] = useState(page.content);
+  const [categoryId, setCategoryId] = useState(page.categoryId);
   const [isSuggesting, setIsSuggesting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSave = () => {
-    onSave(page.id, title, content);
+    onSave(page.id, title, content, categoryId);
   };
 
   const handleSuggestTitle = async () => {
@@ -41,7 +42,7 @@ const EditView: React.FC<EditViewProps> = ({ page, onSave, onCancel }) => {
 
   return (
     <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8 space-y-6 h-full flex flex-col">
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 space-y-4">
         <div className="relative">
           <input
             type="text"
@@ -62,6 +63,23 @@ const EditView: React.FC<EditViewProps> = ({ page, onSave, onCancel }) => {
               <SparklesIcon className="w-5 h-5" />
             )}
           </button>
+        </div>
+        <div>
+          <label htmlFor="category-select" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Category
+          </label>
+          <select
+            id="category-select"
+            value={categoryId}
+            onChange={(e) => setCategoryId(e.target.value)}
+            className="w-full p-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            {categories.map(cat => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
         </div>
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       </div>
