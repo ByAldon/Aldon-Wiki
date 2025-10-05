@@ -1,9 +1,9 @@
-interface Category {
+export interface Category {
   id: string;
   name: string;
 }
 
-interface WikiPage {
+export interface WikiPage {
   id: string;
   title: string;
   content: string;

@@ -1,8 +1,8 @@
-// Fix: Add necessary imports for React, markdown rendering, and types.
+// FIX: Import React, ReactMarkdown, and remarkGfm.
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import type { WikiPage } from '../types';
+import type { WikiPage } from '../types.ts';
 
 const ContentView: React.FC<{ page: WikiPage; categoryName?: string; }> = ({ page, categoryName }) => {
   return (
@@ -24,5 +24,4 @@ const ContentView: React.FC<{ page: WikiPage; categoryName?: string; }> = ({ pag
   );
 };
 
-// Fix: Add default export for the ContentView component.
 export default ContentView;

@@ -1,7 +1,7 @@
-// Fix: Add imports for React, types, and icons.
+// FIX: Import React and hooks directly.
 import React, { useState, useMemo, useEffect } from 'react';
-import type { WikiPage, Category } from '../types';
-import { BookIcon, ChevronRightIcon } from './Icons';
+import type { WikiPage, Category } from '../types.ts';
+import { BookIcon, ChevronRightIcon } from './Icons.tsx';
 
 const Sidebar: React.FC<{
     pages: WikiPage[];
@@ -9,7 +9,6 @@ const Sidebar: React.FC<{
     activePageId: string | null;
     onSelectPage: (id: string) => void;
 }> = ({ pages, categories, activePageId, onSelectPage }) => {
-    // Fix: Moved hook destructuring to the import statement at the top of the file.
     const activePage = useMemo(() => pages.find(p => p.id === activePageId), [pages, activePageId]);
     
     const [expandedCategories, setExpandedCategories] = useState(() => 
@@ -96,5 +95,4 @@ const Sidebar: React.FC<{
   );
 };
 
-// Fix: Add default export for the Sidebar component.
 export default Sidebar;

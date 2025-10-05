@@ -1,10 +1,11 @@
-// Fix: Replace UMD-style React hook access with a proper import statement.
+// FIX: Import React and hooks directly.
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
-// Fix: Import types and components used within App.
-import type { WikiPage, Category } from './types';
-import Sidebar from './components/Sidebar';
-import ContentView from './components/ContentView';
-import { BookIcon } from './components/Icons';
+
+// Import types and components with full file extensions for module resolution.
+import type { WikiPage, Category } from './types.ts';
+import Sidebar from './components/Sidebar.tsx';
+import ContentView from './components/ContentView.tsx';
+import { BookIcon } from './components/Icons.tsx';
 
 const App = () => {
   const [pages, setPages] = useState<WikiPage[]>([]);
@@ -137,5 +138,4 @@ const App = () => {
   );
 };
 
-// Fix: Add default export for the App component.
 export default App;

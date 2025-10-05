@@ -1,7 +1,7 @@
-// Fix: Add imports for React, ReactDOM, and App component.
+// FIX: Import React and ReactDOM as this is a module.
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from './App.tsx';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

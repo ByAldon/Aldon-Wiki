@@ -46,18 +46,8 @@
   <body class="bg-light dark:bg-dark">
     <div id="root"></div>
     
-    <!-- 3. Load and Transpile App Components Sequentially -->
-    <!-- Type definitions are stripped by Babel, so this file makes interfaces globally available to subsequent scripts -->
-    <script type="text/babel" src="./types.ts"></script>
-    
-    <!-- Components are defined in order of dependency -->
-    <script type="text/babel" src="./components/Icons.tsx"></script>
-    <script type="text/babel" src="./components/ContentView.tsx"></script>
-    <script type="text/babel" src="./components/Sidebar.tsx"></script>
-    <script type="text/babel" src="./App.tsx"></script>
-    
-    <!-- The entry point that kicks off the rendering -->
-    <script type="text/babel" src="./index.tsx"></script>
+    <!-- 3. Load App Entry Point (Babel will handle the module imports) -->
+    <script type="text/babel" data-type="module" src="./index.tsx"></script>
   <script type="module" src="/index.tsx"></script>
 </body>
 </html>
