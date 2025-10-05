@@ -1,14 +1,10 @@
+// Fix: Add necessary imports for React, markdown rendering, and types.
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import type { WikiPage } from '../types.ts';
+import type { WikiPage } from '../types';
 
-interface ContentViewProps {
-    page: WikiPage;
-    categoryName?: string;
-}
-
-const ContentView: React.FC<ContentViewProps> = ({ page, categoryName }) => {
+const ContentView: React.FC<{ page: WikiPage; categoryName?: string; }> = ({ page, categoryName }) => {
   return (
     <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
       <header className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
@@ -28,4 +24,5 @@ const ContentView: React.FC<ContentViewProps> = ({ page, categoryName }) => {
   );
 };
 
+// Fix: Add default export for the ContentView component.
 export default ContentView;
