@@ -1,0 +1,5 @@
+{
+  "name": "Aldon Wiki",
+  "description": "A personal wiki application built with React and Markdown, where all content is managed locally. It features AI-powered title suggestions to streamline content creation.",
+  "requestFramePermissions": []
+}
