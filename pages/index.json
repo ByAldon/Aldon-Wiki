@@ -1,3 +1,4 @@
+
 {
   "categories": [
     {
@@ -10,7 +11,7 @@
       "id": "welcome",
       "title": "Welcome!",
       "categoryId": "getting-started",
-      "path": "./pages/Getting Started/Welcome.md"
+      "path": "pages/Getting Started/Welcome.md"
     }
   ]
 }

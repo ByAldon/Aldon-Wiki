@@ -1,34 +1,27 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { lazy } from 'react';
 import type { WikiPage } from '../types';
 
-// Dynamically import react-markdown and remark-gfm
-let ReactMarkdown: any = () => null;
-let remarkGfm: any;
-
-const loadMarkdown = async () => {
+// Use React.lazy for robust dynamic importing
+const LazyMarkdownRenderer = lazy(async () => {
   const [markdownModule, gfmModule] = await Promise.all([
     import('https://esm.sh/react-markdown@9?bundle'),
     import('https://esm.sh/remark-gfm@4?bundle')
   ]);
-  ReactMarkdown = markdownModule.default;
-  remarkGfm = gfmModule.default;
-};
+  
+  // The component needs to be the default export of the module
+  return { default: (props: { content: string }) => 
+    <markdownModule.default remarkPlugins={[gfmModule.default]}>
+      {props.content}
+    </markdownModule.default> 
+  };
+});
 
 
 const ContentView: React.FC<{ 
     page: WikiPage; 
     categoryName?: string;
 }> = ({ page, categoryName }) => {
-  const [isMarkdownLoaded, setIsMarkdownLoaded] = useState(false);
-  
-  useEffect(() => {
-    loadMarkdown().then(() => setIsMarkdownLoaded(true));
-  }, []);
-
-  if (!isMarkdownLoaded) {
-    return <div className="p-4 text-center">Loading content viewer...</div>;
-  }
-  
   return (
     <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
       <header className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
@@ -40,9 +33,7 @@ const ContentView: React.FC<{
         </div>
       </header>
       <article className="prose prose-indigo dark:prose-invert lg:prose-lg max-w-none">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {page.content}
-        </ReactMarkdown>
+        <LazyMarkdownRenderer content={page.content} />
       </article>
     </div>
   );
