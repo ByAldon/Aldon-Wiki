@@ -12,53 +12,75 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchWikiData = async () => {
-      try {
-        // Use new URL() to create a robust, absolute path for the manifest
-        const manifestResponse = await fetch(new URL('pages/index.json', window.location.href).href);
-        if (!manifestResponse.ok) {
-          throw new Error('Could not load wiki manifest. Make sure pages/index.json exists.');
-        }
-        const manifest = await manifestResponse.json();
-
-        const pagePromises = manifest.pages.map(async (pageMeta: { path: string; id: string; title: string; categoryId: string; }) => {
-          // Encode path components to handle spaces and other special characters
-          const encodedPath = pageMeta.path.split('/').map(encodeURIComponent).join('/');
-          
-          // Use a relative path from the root, now correctly encoded
-          const pageResponse = await fetch(new URL(encodedPath, window.location.href).href);
-          if (!pageResponse.ok) {
-            console.warn(`Failed to load page content from ${pageMeta.path}`);
-            return null;
-          }
-          const content = await pageResponse.text();
-          return {
-            id: pageMeta.id,
-            title: pageMeta.title,
-            categoryId: pageMeta.categoryId,
-            content: content,
-          };
-        });
-
-        const loadedPages = (await Promise.all(pagePromises)).filter((p): p is WikiPage => p !== null);
-
-        setCategories(manifest.categories);
-        setPages(loadedPages);
-
-        if (loadedPages.length > 0) {
-          const defaultPage = manifest.pages[0].id;
-          setActivePageId(defaultPage);
-        }
-      } catch (e) {
-        setError(e instanceof Error ? e.message : 'An unknown error occurred while loading the wiki.');
-      } finally {
-        setIsLoading(false);
+  const fetchWikiData = useCallback(async (isInitialLoad = false) => {
+    if (isInitialLoad) {
+        setIsLoading(true);
+    }
+    try {
+      // Use new URL() to create a robust, absolute path for the manifest
+      const manifestResponse = await fetch(new URL('pages/index.json', window.location.href).href);
+      if (!manifestResponse.ok) {
+        throw new Error('Could not load wiki manifest. Make sure pages/index.json exists.');
       }
-    };
+      const manifest = await manifestResponse.json();
 
-    fetchWikiData();
+      const pagePromises = manifest.pages.map(async (pageMeta: { path: string; id: string; title: string; categoryId: string; }) => {
+        // Encode path components to handle spaces and other special characters
+        const encodedPath = pageMeta.path.split('/').map(encodeURIComponent).join('/');
+        
+        // Use a relative path from the root, now correctly encoded
+        const pageResponse = await fetch(new URL(encodedPath, window.location.href).href);
+        if (!pageResponse.ok) {
+          console.warn(`Failed to load page content from ${pageMeta.path}`);
+          return null;
+        }
+        const content = await pageResponse.text();
+        return {
+          id: pageMeta.id,
+          title: pageMeta.title,
+          categoryId: pageMeta.categoryId,
+          content: content,
+        };
+      });
+
+      const loadedPages = (await Promise.all(pagePromises)).filter((p): p is WikiPage => p !== null);
+
+      setCategories(manifest.categories);
+      setPages(loadedPages);
+      
+      // Preserve active page on refresh, or set default on initial load.
+      setActivePageId(currentId => {
+          const pageStillExists = loadedPages.some(p => p.id === currentId);
+          if (currentId && pageStillExists) {
+              return currentId; // Keep current page if it still exists
+          }
+          // If no page is selected, or selected page was removed, default to first page
+          if (loadedPages.length > 0) {
+              return manifest.pages[0].id;
+          }
+          return null; // No pages left
+      });
+
+      setError(null); // Clear any previous errors on a successful fetch
+
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'An unknown error occurred while loading the wiki.');
+    } finally {
+      if (isInitialLoad) {
+          setIsLoading(false);
+      }
+    }
   }, []);
+
+  useEffect(() => {
+    fetchWikiData(true); // Initial fetch
+    
+    // Set up interval for auto-refreshing every minute
+    const intervalId = setInterval(() => fetchWikiData(false), 60000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+  }, [fetchWikiData]);
 
   const activePage = useMemo(() => pages.find(p => p.id === activePageId), [pages, activePageId]);
   const activeCategory = useMemo(() => categories.find(c => c.id === activePage?.categoryId), [categories, activePage]);
