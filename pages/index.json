@@ -1,0 +1,16 @@
+{
+  "categories": [
+    {
+      "id": "getting-started",
+      "name": "Getting Started"
+    }
+  ],
+  "pages": [
+    {
+      "id": "welcome",
+      "title": "Welcome!",
+      "categoryId": "getting-started",
+      "path": "./pages/Getting Started/Welcome.md"
+    }
+  ]
+}
