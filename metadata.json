@@ -1,5 +1,5 @@
 {
   "name": "Aldon Wiki",
-  "description": "A personal wiki application built with React and Markdown, where all content is managed locally. It features AI-powered title suggestions to streamline content creation.",
+  "description": "A static, read-only wiki application built with React that renders Markdown files from a `/pages` directory. All content is managed by adding or editing local Markdown files.",
   "requestFramePermissions": []
 }
