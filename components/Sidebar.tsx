@@ -1,6 +1,7 @@
+
 import React, { useState, useMemo, useEffect } from 'react';
-import type { WikiPage, Category } from '../types';
-import { BookIcon, ChevronRightIcon } from './Icons';
+import type { WikiPage, Category } from '../types.ts';
+import { BookIcon, ChevronRightIcon } from './Icons.tsx';
 
 interface SidebarProps {
   pages: WikiPage[];

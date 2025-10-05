@@ -1,6 +1,6 @@
 
 import React, { lazy } from 'react';
-import type { WikiPage } from '../types';
+import type { WikiPage } from '../types.ts';
 
 // Use React.lazy for robust dynamic importing
 const LazyMarkdownRenderer = lazy(async () => {

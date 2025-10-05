@@ -1,9 +1,9 @@
 
 import React, { useState, useMemo, useCallback, useEffect, Suspense } from 'react';
-import type { WikiPage, Category } from './types';
-import Sidebar from './components/Sidebar';
-import ContentView from './components/ContentView';
-import { BookIcon } from './components/Icons';
+import type { WikiPage, Category } from './types.ts';
+import Sidebar from './components/Sidebar.tsx';
+import ContentView from './components/ContentView.tsx';
+import { BookIcon } from './components/Icons.tsx';
 
 const App: React.FC = () => {
   const [pages, setPages] = useState<WikiPage[]>([]);
