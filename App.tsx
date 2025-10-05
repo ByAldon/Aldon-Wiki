@@ -15,7 +15,8 @@ const App: React.FC = () => {
   useEffect(() => {
     const fetchWikiData = async () => {
       try {
-        const manifestResponse = await fetch('pages/index.json');
+        // Use new URL() to create a robust, absolute path for the manifest
+        const manifestResponse = await fetch(new URL('pages/index.json', window.location.href).href);
         if (!manifestResponse.ok) {
           throw new Error('Could not load wiki manifest. Make sure pages/index.json exists.');
         }
