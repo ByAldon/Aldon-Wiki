@@ -4,9 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let manifest = null; // Will hold the entire index.json content
 
     const ICONS = {
-        BOOK: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 2rem; height: 2rem; color: var(--primary-color);">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-        </svg>`,
+        BOOK: `<img src="assets/aldonlogo.png" alt="Aldon Wiki Logo" class="icon">`,
         CHEVRON: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>`,
@@ -43,16 +41,34 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`;
     }
 
+    const findPageRecursive = (pages, pageId, path = []) => {
+        for (const page of pages) {
+            const newPath = [...path, page];
+            if (page.id === pageId) {
+                return { page, path: newPath };
+            }
+            if (page.pages) {
+                const found = findPageRecursive(page.pages, pageId, newPath);
+                if (found) {
+                    return found;
+                }
+            }
+        }
+        return null;
+    };
+
     const loadPage = async (pageId) => {
         if (!manifest || !manifest.pages) return;
         
-        const page = manifest.pages.find(p => p.id === pageId);
+        const pageInfo = pageId ? findPageRecursive(manifest.pages, pageId) : null;
 
-        if (!page) {
+        if (!pageInfo) {
             renderWelcomeMessage(manifest.pages.length > 0);
             document.querySelectorAll('.page-link').forEach(link => link.classList.remove('active'));
             return;
         }
+
+        const page = pageInfo.page;
 
         document.querySelectorAll('.page-link').forEach(link => {
             link.classList.toggle('active', link.dataset.pageId === page.id);
@@ -73,15 +89,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const buildSidebar = (categories, pages) => {
-        const pagesByCategory = pages.reduce((acc, page) => {
-            if (!acc[page.categoryId]) {
-                acc[page.categoryId] = [];
-            }
-            acc[page.categoryId].push(page);
-            return acc;
-        }, {});
+    const renderPageTree = (pages) => {
+        if (!pages || pages.length === 0) return '';
+        let html = '<ul class="page-list">';
+        pages.forEach(page => {
+            const hasChildren = page.pages && page.pages.length > 0;
+            html += `
+                <li class="page-item" data-page-id="${page.id}">
+                    <div class="page-link-container">
+                        <a href="#${page.id}" class="page-link" data-page-id="${page.id}">${page.title}</a>
+                        ${hasChildren ? `<button class="page-toggle" aria-label="Toggle sub-pages">${ICONS.CHEVRON}</button>` : ''}
+                    </div>
+                    ${hasChildren ? `<div class="sub-pages">${renderPageTree(page.pages)}</div>` : ''}
+                </li>`;
+        });
+        html += '</ul>';
+        return html;
+    };
 
+    const buildSidebar = (categories, pages) => {
         const homeHref = pages.length > 0 ? `#${pages[0].id}` : '#';
 
         let sidebarHTML = `
@@ -96,19 +122,19 @@ document.addEventListener('DOMContentLoaded', () => {
             <nav class="sidebar-nav">`;
 
         categories.forEach(category => {
-            const categoryPages = pagesByCategory[category.id] || [];
-            sidebarHTML += `
-                <div class="category-item">
-                    <button class="category-toggle" data-category-id="${category.id}">
-                        <span>${category.name}</span>
-                        ${ICONS.CHEVRON}
-                    </button>
-                    <div class="category-pages" id="category-${category.id}">
-                        ${categoryPages.map(page => `
-                            <a href="#${page.id}" class="page-link" data-page-id="${page.id}">${page.title}</a>
-                        `).join('')}
-                    </div>
-                </div>`;
+            const categoryPages = pages.filter(p => p.categoryId === category.id);
+            if (categoryPages.length > 0) {
+                sidebarHTML += `
+                    <div class="category-item">
+                        <button class="category-toggle" data-category-id="${category.id}">
+                            <span>${category.name}</span>
+                            ${ICONS.CHEVRON}
+                        </button>
+                        <div class="category-pages" id="category-${category.id}">
+                            ${renderPageTree(categoryPages)}
+                        </div>
+                    </div>`;
+            }
         });
         
         sidebarHTML += `</nav>`;
@@ -122,24 +148,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 pageList.classList.toggle('expanded');
             });
         });
+
+        document.querySelectorAll('.page-toggle').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const pageItem = button.closest('.page-item');
+                pageItem.classList.toggle('expanded');
+            });
+        });
     };
 
     const handleRouteChange = () => {
         const pageId = window.location.hash.substring(1);
         if (pageId) {
-            loadPage(pageId);
-            // Expand the category of the active page for better UX
-            const page = manifest.pages.find(p => p.id === pageId);
-            if (page) {
-                const categoryButton = document.querySelector(`.category-toggle[data-category-id="${page.categoryId}"]`);
-                const pageList = document.getElementById(`category-${page.categoryId}`);
+            const pageInfo = findPageRecursive(manifest.pages, pageId);
+            if (pageInfo) {
+                loadPage(pageId);
+                // Expand category
+                const categoryButton = document.querySelector(`.category-toggle[data-category-id="${pageInfo.page.categoryId}"]`);
+                const categoryPages = document.getElementById(`category-${pageInfo.page.categoryId}`);
                 if (categoryButton && !categoryButton.classList.contains('expanded')) {
                     categoryButton.classList.add('expanded');
-                    pageList.classList.add('expanded');
+                    categoryPages.classList.add('expanded');
                 }
+                // Expand all parent pages
+                pageInfo.path.forEach(ancestorPage => {
+                    const pageItem = document.querySelector(`.page-item[data-page-id="${ancestorPage.id}"]`);
+                    if (pageItem) {
+                        pageItem.classList.add('expanded');
+                    }
+                });
+            } else {
+                loadPage(null);
             }
         } else if (manifest && manifest.pages.length > 0) {
-            // If no hash, redirect to the first page's hash
             window.location.hash = `#${manifest.pages[0].id}`;
         } else {
             renderWelcomeMessage(false);

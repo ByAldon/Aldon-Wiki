@@ -32,6 +32,8 @@ First, define a category. This is the collapsible folder you see in the sidebar.
 
 Next, add your page and link it to a category using the `categoryId`.
 
+To create nested pages (or "sub-pages"), add a `pages` property to any page object. This property should be an array of more page objects. You can nest pages as deeply as you like.
+
 ```jsonc
 // Add your new page to this list.
 "pages": [
@@ -39,9 +41,17 @@ Next, add your page and link it to a category using the `categoryId`.
     "id": "welcome", // A unique, simple ID for the page.
     "title": "Welcome!", // The page title you see in the sidebar.
     "categoryId": "getting-started", // MUST match a category "id" from the list above.
-    "path": "pages/Getting Started/Welcome.md" // The exact path to your .md file.
+    "path": "pages/Getting Started/Welcome.md",
+    // This page has a sub-page.
+    "pages": [
+      {
+        "id": "markdown-cheatsheet",
+        "title": "Markdown Cheatsheet",
+        "categoryId": "getting-started",
+        "path": "pages/Getting Started/Markdown Cheatsheet.md"
+      }
+    ]
   },
-
   {
     "id": "meeting-notes",
     "title": "Meeting Notes",
@@ -58,6 +68,6 @@ Next, add your page and link it to a category using the `categoryId`.
 1.  **Create your `.md` file** inside the `/pages` directory (e.g., `pages/Project X/My New Page.md`).
 2.  **Update `pages/index.json`**:
     *   Add your category to the `categories` list if it's new.
-    *   Add your page details to the `pages` list.
+    *   Add your page details to the `pages` list, nesting it under a parent page if desired.
 
 That's it! Your new content will appear automatically.

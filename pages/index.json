@@ -1,4 +1,3 @@
-
 {
   "categories": [
     {
@@ -6,11 +5,22 @@
       "name": "Getting Started"
     },
     {
-      "id": "project-alpha",
-      "name": "Project Alpha"
+      "id": "wordpress",
+      "name": "Wordpress"
+    },
+    {
+      "id": "second-life",
+      "name": "Second Life"
+    },
+    {
+      "id": "other-applications",
+      "name": "Other Applications"
+    },
+    {
+      "id": "exclusive-tutorials",
+      "name": "Exclusive Tutorials"
     }
   ],
-
   "pages": [
     {
       "id": "welcome",
@@ -18,18 +28,41 @@
       "categoryId": "getting-started",
       "path": "pages/Getting Started/Welcome.md"
     },
-
     {
-      "id": "markdown-cheatsheet",
-      "title": "Markdown Cheatsheet",
-      "categoryId": "getting-started",
-      "path": "pages/Getting Started/Markdown Cheatsheet.md"
+      "id": "index",
+      "title": "Index",
+      "categoryId": "second-life",
+      "path": "pages/Second Life/Index.md",
+      "pages": [
+        {
+          "id": "inworld-notes",
+          "title": "Inworld Notes",
+          "categoryId": "second-life",
+          "path": "pages/Second Life/Inworld Notes.md",
+          "pages": [
+            {
+              "id": "sl-avatar-customization",
+              "title": "Avatar Customization",
+              "categoryId": "second-life",
+              "path": "pages/Second Life/Avatar Customization.md"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "planning",
-      "title": "Planning",
-      "categoryId": "project-alpha",
-      "path": "pages/Project Alpha/Planning.md"
+      "id": "useful-tools",
+      "title": "Useful Tools",
+      "categoryId": "other-applications",
+      "path": "pages/Other Applications/Useful Tools.md",
+      "pages": []
+    },
+    {
+      "id": "about",
+      "title": "About",
+      "categoryId": "exclusive-tutorials",
+      "path": "pages/Exclusive Tutorials/About.md",
+      "pages": []
     }
   ]
 }
