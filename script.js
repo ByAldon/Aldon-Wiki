@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const sidebarEl = document.getElementById('sidebar');
     const contentEl = document.getElementById('content');
-    let activePageId = null;
+    let manifest = null; // Will hold the entire index.json content
 
     const ICONS = {
         BOOK: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 2rem; height: 2rem; color: var(--primary-color);">
@@ -43,9 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`;
     }
 
-    const loadPage = async (page) => {
-        activePageId = page.id;
+    const loadPage = async (pageId) => {
+        if (!manifest || !manifest.pages) return;
         
+        const page = manifest.pages.find(p => p.id === pageId);
+
+        if (!page) {
+            renderWelcomeMessage(manifest.pages.length > 0);
+            document.querySelectorAll('.page-link').forEach(link => link.classList.remove('active'));
+            return;
+        }
+
         document.querySelectorAll('.page-link').forEach(link => {
             link.classList.toggle('active', link.dataset.pageId === page.id);
         });
@@ -74,9 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return acc;
         }, {});
 
+        const homeHref = pages.length > 0 ? `#${pages[0].id}` : '#';
+
         let sidebarHTML = `
             <div class="sidebar-header">
-                 <a href="#" id="home-link" class="sidebar-title-link" aria-label="Go to home page">
+                 <a href="${homeHref}" class="sidebar-title-link" aria-label="Go to home page">
                     <div class="sidebar-title">
                         ${ICONS.BOOK}
                         <h1>Aldon Wiki</h1>
@@ -95,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </button>
                     <div class="category-pages" id="category-${category.id}">
                         ${categoryPages.map(page => `
-                            <a href="#" class="page-link" data-page-id="${page.id}">${page.title}</a>
+                            <a href="#${page.id}" class="page-link" data-page-id="${page.id}">${page.title}</a>
                         `).join('')}
                     </div>
                 </div>`;
@@ -103,14 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         sidebarHTML += `</nav>`;
         sidebarEl.innerHTML = sidebarHTML;
-        
-        const homeLink = document.getElementById('home-link');
-        if (homeLink && pages.length > 0) {
-            homeLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                loadPage(pages[0]);
-            });
-        }
 
         document.querySelectorAll('.category-toggle').forEach(button => {
             button.addEventListener('click', () => {
@@ -120,17 +122,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 pageList.classList.toggle('expanded');
             });
         });
+    };
 
-        document.querySelectorAll('.page-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const pageId = link.dataset.pageId;
-                const pageToLoad = pages.find(p => p.id === pageId);
-                if (pageToLoad) {
-                    loadPage(pageToLoad);
+    const handleRouteChange = () => {
+        const pageId = window.location.hash.substring(1);
+        if (pageId) {
+            loadPage(pageId);
+            // Expand the category of the active page for better UX
+            const page = manifest.pages.find(p => p.id === pageId);
+            if (page) {
+                const categoryButton = document.querySelector(`.category-toggle[data-category-id="${page.categoryId}"]`);
+                const pageList = document.getElementById(`category-${page.categoryId}`);
+                if (categoryButton && !categoryButton.classList.contains('expanded')) {
+                    categoryButton.classList.add('expanded');
+                    pageList.classList.add('expanded');
                 }
-            });
-        });
+            }
+        } else if (manifest && manifest.pages.length > 0) {
+            // If no hash, redirect to the first page's hash
+            window.location.hash = `#${manifest.pages[0].id}`;
+        } else {
+            renderWelcomeMessage(false);
+        }
     };
 
     const setupThemeToggle = () => {
@@ -162,14 +175,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         themeToggleBtn.addEventListener('click', toggleTheme);
 
-        // Initialize theme
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            applyTheme(savedTheme);
-        } else {
-            // Default to light theme if no preference is saved.
-            applyTheme('light');
-        }
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
     };
 
     const initialize = async () => {
@@ -179,21 +187,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 throw new Error('Could not load wiki manifest. Make sure pages/index.json exists and is valid JSON.');
             }
-            const manifest = await response.json();
+            manifest = await response.json();
             
             buildSidebar(manifest.categories, manifest.pages);
             setupThemeToggle();
 
-            if (manifest.pages.length > 0) {
-                const firstPage = manifest.pages[0];
-                loadPage(firstPage);
-                const firstCategoryButton = document.querySelector(`.category-toggle[data-category-id="${firstPage.categoryId}"]`);
-                if(firstCategoryButton) {
-                    firstCategoryButton.click();
-                }
-            } else {
-                renderWelcomeMessage(false);
-            }
+            window.addEventListener('hashchange', handleRouteChange);
+            handleRouteChange(); // Trigger route handling for initial load
+
         } catch (error) {
             console.error('Initialization failed:', error);
             renderError(error.message);
