@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </svg>`,
         CHEVRON: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>`,
+        SUN: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>`,
+        MOON: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
         </svg>`
     };
 
@@ -40,12 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadPage = async (page) => {
         activePageId = page.id;
         
-        // Update active class on links
         document.querySelectorAll('.page-link').forEach(link => {
             link.classList.toggle('active', link.dataset.pageId === page.id);
         });
         
-        // Show loading state for content
         contentEl.innerHTML = `<div class="content-placeholder"><div class="loader"></div></div>`;
 
         try {
@@ -72,8 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let sidebarHTML = `
             <div class="sidebar-header">
-                ${ICONS.BOOK}
-                <h1>Aldon Wiki</h1>
+                 <a href="#" id="home-link" class="sidebar-title-link" aria-label="Go to home page">
+                    <div class="sidebar-title">
+                        ${ICONS.BOOK}
+                        <h1>Aldon Wiki</h1>
+                    </div>
+                </a>
             </div>
             <nav class="sidebar-nav">`;
 
@@ -95,8 +103,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         sidebarHTML += `</nav>`;
         sidebarEl.innerHTML = sidebarHTML;
+        
+        const homeLink = document.getElementById('home-link');
+        if (homeLink && pages.length > 0) {
+            homeLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadPage(pages[0]);
+            });
+        }
 
-        // Add event listeners
         document.querySelectorAll('.category-toggle').forEach(button => {
             button.addEventListener('click', () => {
                 const categoryId = button.dataset.categoryId;
@@ -118,6 +133,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const setupThemeToggle = () => {
+        const themeToggleBtn = document.createElement('button');
+        themeToggleBtn.classList.add('theme-toggle');
+        themeToggleBtn.setAttribute('aria-label', 'Toggle theme');
+        
+        const header = sidebarEl.querySelector('.sidebar-header');
+        if (header) {
+            header.appendChild(themeToggleBtn);
+        }
+
+        const applyTheme = (theme) => {
+            if (theme === 'dark') {
+                document.body.classList.add('dark');
+                themeToggleBtn.innerHTML = ICONS.SUN;
+            } else {
+                document.body.classList.remove('dark');
+                themeToggleBtn.innerHTML = ICONS.MOON;
+            }
+        };
+
+        const toggleTheme = () => {
+            const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        };
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+
+        // Initialize theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            // Default to light theme if no preference is saved.
+            applyTheme('light');
+        }
+    };
+
     const initialize = async () => {
         renderLoading();
         try {
@@ -128,11 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const manifest = await response.json();
             
             buildSidebar(manifest.categories, manifest.pages);
+            setupThemeToggle();
 
             if (manifest.pages.length > 0) {
                 const firstPage = manifest.pages[0];
                 loadPage(firstPage);
-                // Expand the first category by default
                 const firstCategoryButton = document.querySelector(`.category-toggle[data-category-id="${firstPage.categoryId}"]`);
                 if(firstCategoryButton) {
                     firstCategoryButton.click();

@@ -4,14 +4,32 @@
     {
       "id": "getting-started",
       "name": "Getting Started"
+    },
+    {
+      "id": "project-alpha",
+      "name": "Project Alpha"
     }
   ],
+
   "pages": [
     {
       "id": "welcome",
       "title": "Welcome!",
       "categoryId": "getting-started",
       "path": "pages/Getting Started/Welcome.md"
+    },
+
+    {
+      "id": "markdown-cheatsheet",
+      "title": "Markdown Cheatsheet",
+      "categoryId": "getting-started",
+      "path": "pages/Getting Started/Markdown Cheatsheet.md"
+    },
+    {
+      "id": "planning",
+      "title": "Planning",
+      "categoryId": "project-alpha",
+      "path": "pages/Project Alpha/Planning.md"
     }
   ]
 }
