@@ -21,24 +21,40 @@
         }
       }
     </script>
-  <script type="importmap">
+    
+    <!-- Load libraries as globals -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-markdown@9/react-markdown.min.js"></script>
+    <script src="https://unpkg.com/remark-gfm@4/remark-gfm.min.js"></script>
+    
+    <!-- Add Babel Standalone for in-browser JSX/TS transpilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.22.0"
+    "remark-gfm": "https://aistudiocdn.com/remark-gfm@^4.0.1",
+    "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0"
   }
 }
 </script>
-<!-- Add Babel Standalone for in-browser JSX/TS transpilation -->
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-light dark:bg-dark">
     <div id="root"></div>
-    <!-- Note the type change to "text/babel" and the relative path -->
-    <script type="text/babel" data-type="module" src="index.tsx"></script>
+    
+    <!-- 
+      Load all components sequentially. Babel will transpile each one.
+      Dependencies must be loaded before the files that use them.
+    -->
+    <script type="text/babel" src="components/Icons.tsx"></script>
+    <script type="text/babel" src="components/ContentView.tsx"></script>
+    <script type="text/babel" src="components/Sidebar.tsx"></script>
+    <script type="text/babel" src="App.tsx"></script>
+    <script type="text/babel" src="index.tsx"></script>
   <script type="module" src="/index.tsx"></script>
 </body>
 </html>

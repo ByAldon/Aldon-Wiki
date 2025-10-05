@@ -1,27 +1,14 @@
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import type { WikiPage } from '../types';
 
-import React, { lazy } from 'react';
-import type { WikiPage } from '../types.ts';
-
-// Use React.lazy for robust dynamic importing
-const LazyMarkdownRenderer = lazy(async () => {
-  const [markdownModule, gfmModule] = await Promise.all([
-    import('https://esm.sh/react-markdown@9?bundle'),
-    import('https://esm.sh/remark-gfm@4?bundle')
-  ]);
-  
-  // The component needs to be the default export of the module
-  return { default: (props: { content: string }) => 
-    <markdownModule.default remarkPlugins={[gfmModule.default]}>
-      {props.content}
-    </markdownModule.default> 
-  };
-});
-
-
-const ContentView: React.FC<{ 
-    page: WikiPage; 
+interface ContentViewProps {
+    page: WikiPage;
     categoryName?: string;
-}> = ({ page, categoryName }) => {
+}
+
+const ContentView: React.FC<ContentViewProps> = ({ page, categoryName }) => {
   return (
     <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
       <header className="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
@@ -33,7 +20,9 @@ const ContentView: React.FC<{
         </div>
       </header>
       <article className="prose prose-indigo dark:prose-invert lg:prose-lg max-w-none">
-        <LazyMarkdownRenderer content={page.content} />
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {page.content}
+        </ReactMarkdown>
       </article>
     </div>
   );

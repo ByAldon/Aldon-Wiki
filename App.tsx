@@ -1,15 +1,15 @@
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import Sidebar from './components/Sidebar';
+import ContentView from './components/ContentView';
+import { BookIcon } from './components/Icons';
+import type { Category, WikiPage } from './types';
 
-import React, { useState, useMemo, useCallback, useEffect, Suspense } from 'react';
-import type { WikiPage, Category } from './types.ts';
-import Sidebar from './components/Sidebar.tsx';
-import ContentView from './components/ContentView.tsx';
-import { BookIcon } from './components/Icons.tsx';
 
-const App: React.FC = () => {
+const App = () => {
   const [pages, setPages] = useState<WikiPage[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [activePageId, setActivePageId] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -22,12 +22,7 @@ const App: React.FC = () => {
         }
         const manifest = await manifestResponse.json();
 
-        const pagePromises = manifest.pages.map(async (pageMeta: {
-          id: string;
-          title: string;
-          categoryId: string;
-          path: string;
-        }) => {
+        const pagePromises = manifest.pages.map(async (pageMeta: { path: string; id: string; title: string; categoryId: string; }) => {
           // Encode path components to handle spaces and other special characters
           const encodedPath = pageMeta.path.split('/').map(encodeURIComponent).join('/');
           
@@ -46,7 +41,7 @@ const App: React.FC = () => {
           };
         });
 
-        const loadedPages = (await Promise.all(pagePromises)).filter(p => p !== null) as WikiPage[];
+        const loadedPages = (await Promise.all(pagePromises)).filter((p): p is WikiPage => p !== null);
 
         setCategories(manifest.categories);
         setPages(loadedPages);
@@ -90,11 +85,7 @@ const App: React.FC = () => {
         );
     }
     if (activePage) {
-        return (
-            <Suspense fallback={<div className="p-4 text-center">Loading content viewer...</div>}>
-                <ContentView page={activePage} categoryName={activeCategory?.name} />
-            </Suspense>
-        );
+        return <ContentView page={activePage} categoryName={activeCategory?.name} />;
     }
     return (
         <div className="flex flex-col items-center justify-center h-full text-center text-gray-500 dark:text-gray-400">

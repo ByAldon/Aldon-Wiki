@@ -1,19 +1,18 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
-import type { WikiPage, Category } from '../types.ts';
-import { BookIcon, ChevronRightIcon } from './Icons.tsx';
+import { BookIcon, ChevronRightIcon } from './Icons';
+import type { WikiPage, Category } from '../types';
 
 interface SidebarProps {
-  pages: WikiPage[];
-  categories: Category[];
-  activePageId: string | null;
-  onSelectPage: (id: string) => void;
+    pages: WikiPage[];
+    categories: Category[];
+    activePageId: string | null;
+    onSelectPage: (id: string) => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ pages, categories, activePageId, onSelectPage }) => {
     const activePage = useMemo(() => pages.find(p => p.id === activePageId), [pages, activePageId]);
     
-    const [expandedCategories, setExpandedCategories] = useState<Set<string>>(() => 
+    const [expandedCategories, setExpandedCategories] = useState(() => 
         new Set(activePage ? [activePage.categoryId] : [])
     );
 
