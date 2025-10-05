@@ -11,18 +11,22 @@ This page provides a quick reference for the most common Markdown syntax.
 ## Headings
 
 # Heading 1
+
 ## Heading 2
+
 ### Heading 3
 
 ## Lists
 
 ### Unordered List
+
 - Item 1
 - Item 2
   - Sub-item 2.1
   - Sub-item 2.2
 
 ### Ordered List
+
 1. First item
 2. Second item
 3. Third item
@@ -50,6 +54,5 @@ greet('Aldon Wiki User');
 ## Blockquotes
 
 > To create a blockquote, add a `>` in front of a paragraph. It's useful for quoting text from another source.
->
+> 
 > > Blockquotes can be nested.
-

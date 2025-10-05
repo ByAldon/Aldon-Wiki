@@ -1,20 +1,22 @@
 # Welcome to Aldon Wiki
 
-This is your personal, Markdown-powered wiki. Everything you see here is a static Markdown file.
+Welcome to the official Aldon Wiki! This is your go-to resource for information about my applications, tutorials, and community support. 
 
-## How to Get Started
+---
 
-1.  **Add a new page:** Create a new `.md` file in the `/pages` directory.
-2.  **Add a category:** Create a new folder inside `/pages`.
-3.  **Register your content:** Update the `pages/index.json` file to include your new categories and pages.
-4.  **Write content:** Use Markdown syntax to format your text. You can create headings, lists, links, and more.
+## About Me
 
-## What is Markdown?
+At Aldon, I am dedicated to developing innovative applications for the 
+internet. My goal is to provide users with powerful tools and resources 
+to enhance their online experiences. While not everything is open 
+source, I always prioritize privacy in my work.
 
-Markdown is a lightweight markup language with plain-text-formatting syntax. It's designed so that it can be converted to HTML and many other formats.
+---
 
--   **Bold:** `**Bold Text**`
--   *Italic:* `*Italic Text*`
--   `Code:` ``` `Code Block` ```
+## Navigation
 
-Enjoy building your personal knowledge base!
+- Wordpress - Plugins/Themes
+
+- Second Life
+
+- Other applications
