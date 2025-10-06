@@ -29,22 +29,22 @@
       "path": "pages/Getting Started/Welcome.md"
     },
     {
-      "id": "index",
+      "id": "second-life",
       "title": "Index",
       "categoryId": "second-life",
-      "path": "pages/Second Life/Index.md",
+      "path": "pages/Second Life/second-life.md",
       "pages": [
         {
           "id": "inworld-notes",
           "title": "Inworld Notes",
           "categoryId": "second-life",
-          "path": "pages/Second Life/Inworld Notes.md",
+          "path": "pages/Second Life/inworld-notes.md",
           "pages": [
             {
-              "id": "sl-avatar-customization",
-              "title": "Avatar Customization",
+              "id": "inworld-notes-updates",
+              "title": "Inworld Notes Updates",
               "categoryId": "second-life",
-              "path": "pages/Second Life/Avatar Customization.md"
+              "path": "pages/Second Life/in-updates.md"
             }
           ]
         }
