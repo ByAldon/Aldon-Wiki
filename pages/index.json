@@ -38,13 +38,19 @@
           "id": "inworld-notes",
           "title": "Inworld Notes",
           "categoryId": "second-life",
-          "path": "pages/Second Life/inworld-notes.md",
+          "path": "pages/Second Life/Inworld Notes/inworld-notes.md",
           "pages": [
             {
               "id": "inworld-notes-updates",
               "title": "Inworld Notes Updates",
               "categoryId": "second-life",
-              "path": "pages/Second Life/in-updates.md"
+              "path": "pages/Second Life/Inworld Notes/inworld-notes-updates.md"
+            },
+            {
+              "id": "inworld-notes-roadmap",
+              "title": "Inworld Notes Roadmap",
+              "categoryId": "second-life",
+              "path": "pages/Second Life/Inworld Notes/inworld-notes-roadmap.md"
             }
           ]
         }
