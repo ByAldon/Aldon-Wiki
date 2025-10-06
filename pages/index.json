@@ -1,23 +1,23 @@
 {
   "categories": [
     {
-      "id": "getting-started",
+      "id": "1",
       "name": "Getting Started"
     },
     {
-      "id": "wordpress",
+      "id": "2",
       "name": "Wordpress"
     },
     {
-      "id": "second-life",
+      "id": "3",
       "name": "Second Life"
     },
     {
-      "id": "other-applications",
+      "id": "4",
       "name": "Other Applications"
     },
     {
-      "id": "exclusive-tutorials",
+      "id": "5",
       "name": "Exclusive Tutorials"
     }
   ],
@@ -25,31 +25,37 @@
     {
       "id": "welcome",
       "title": "Welcome!",
-      "categoryId": "getting-started",
+      "categoryId": "1",
       "path": "pages/Getting Started/Welcome.md"
+    },
+       {
+      "id": "wordpress",
+      "title": "Wordpress",
+      "categoryId": "2",
+      "path": "pages/Wordpress/wordpress.md"
     },
     {
       "id": "second-life",
       "title": "Index",
-      "categoryId": "second-life",
+      "categoryId": "3",
       "path": "pages/Second Life/second-life.md",
       "pages": [
         {
           "id": "inworld-notes",
           "title": "Inworld Notes",
-          "categoryId": "second-life",
+          "categoryId": "3",
           "path": "pages/Second Life/Inworld Notes/inworld-notes.md",
           "pages": [
             {
               "id": "inworld-notes-updates",
               "title": "Inworld Notes Updates",
-              "categoryId": "second-life",
+              "categoryId": "3",
               "path": "pages/Second Life/Inworld Notes/inworld-notes-updates.md"
             },
             {
               "id": "inworld-notes-roadmap",
               "title": "Inworld Notes Roadmap",
-              "categoryId": "second-life",
+              "categoryId": "3",
               "path": "pages/Second Life/Inworld Notes/inworld-notes-roadmap.md"
             }
           ]
@@ -57,17 +63,17 @@
       ]
     },
     {
-      "id": "useful-tools",
-      "title": "Useful Tools",
-      "categoryId": "other-applications",
-      "path": "pages/Other Applications/Useful Tools.md",
+      "id": "first-placeholder",
+      "title": "First Placeholder",
+      "categoryId": "4",
+      "path": "pages/Other Applications/First place holder.md",
       "pages": []
     },
     {
-      "id": "about",
-      "title": "About",
-      "categoryId": "exclusive-tutorials",
-      "path": "pages/Exclusive Tutorials/About.md",
+      "id": "second-placeholder",
+      "title": "Second Placeholder",
+      "categoryId": "5",
+      "path": "pages/Exclusive Tutorials/tuts/First place holder.md",
       "pages": []
     }
   ]
