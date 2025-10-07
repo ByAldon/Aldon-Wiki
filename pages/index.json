@@ -51,6 +51,12 @@
               "title": "Inworld Notes Roadmap",
               "categoryId": "3",
               "path": "pages/Second Life/Inworld Notes/inworld-notes-roadmap.md"
+            },
+                        {
+              "id": "inworld-notes-documentation",
+              "title": "Inworld Notes Docs",
+              "categoryId": "3",
+              "path": "pages/Second Life/Inworld Notes/inworld-notes-documentation.md"
             }
           ]
         }
