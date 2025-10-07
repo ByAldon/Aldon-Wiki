@@ -28,12 +28,6 @@
       "categoryId": "1",
       "path": "pages/Getting Started/Welcome.md"
     },
-       {
-      "id": "wordpress",
-      "title": "Wordpress",
-      "categoryId": "2",
-      "path": "pages/Wordpress/wordpress.md"
-    },
     {
       "id": "second-life",
       "title": "Index",
