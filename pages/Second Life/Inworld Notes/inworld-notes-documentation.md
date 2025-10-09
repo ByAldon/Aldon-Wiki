@@ -85,3 +85,57 @@ This will open a dialog where you can enter your addition. Again, the maximum is
 
 After you click '**Submit**', a dialog will appear asking if you want to add any additional notes to your existing note.<br>
 <img src="assets\secondlife\inworldnotes\docs\Addmoretexttoadditionalnotes.jpg" />
+
+If you added more notes, you can review them by clicking 'Read note' again.
+You will then be able to see the additional notes along with the date and time.<br>
+<img src="assets\secondlife\inworldnotes\docs\Nearbychatextranotesadded3.jpg" />
+
+**Delete a note**<br>
+Don't need this note anymore? Just click the delete button!
+You will see a verification dialog asking if you really want to proceed.<br>
+<img src="assets\secondlife\inworldnotes\docs\Deletenoteyesorno.jpg" />
+
+---
+
+### Options
+
+To access the options, click on the HUD.<br>
+<img src="assets\secondlife\inworldnotes\docs\Hud.jpg" />
+
+Click on 'Options' in the menu.<br>
+<img src="assets\secondlife\inworldnotes\docs\Clickonoptionsinthemenu.jpg" />
+
+You will have the following buttons at your disposal:
+'DELETE ALL', 'Export', 'Docs' and 'About'.<br>
+<img src="assets\secondlife\inworldnotes\docs\Theoptionsdialog.jpg" />
+
+**DELETE ALL**<br>
+When you click 'DELETE ALL', you will remove ALL notes!
+But don't worry, as there is built-in security for this. First, you need to agree to actually remove all the files:<br>
+<img src="assets\secondlife\inworldnotes\docs\Verificationtodeleteallnotesyesorno.jpg" />
+
+Then you are required to type 'DELETE' before you can proceed.<br>
+<img src="assets\secondlife\inworldnotes\docs\Typedeletetoconfirm.jpg" />
+
+After you have done this, the script will perform a hard reset, which will generate a new user ID.  
+So, **be careful when using this feature!** After this, it will no longer be possible to recover your data.
+
+(Make sure to use the [export feature](#) so you don't lose your data).
+
+**Export**<br>
+With the export feature, you can export all notes to your email.
+This can be useful if you have many notes and don't want to clutter your nearby chat with text.<br>
+<img src="assets\secondlife\inworldnotes\docs\Exporttroughemail.jpg" />
+
+After you have entered your email address, the menu will prompt you for verification.<br>
+<img src="assets\secondlife\inworldnotes\docs\Exportyournotestoemailhitsend.jpg" />
+
+It takes a few seconds for the system to process the email. Once it is processed, you will receive a notification in the dialog.<br>
+<img src="assets\secondlife\inworldnotes\docs\Exportyournotestoemailhitsend.jpg" />
+
+The exported notes to email will look something like this.<br>
+<img src="assets\secondlife\inworldnotes\docs\The_exported_notes_to_email_will_look_something_like_this..jpg" width="600" />
+
+**Docs**<br>
+The 'Docs' button provides a link to this documentation page, ensuring you can always find it.<br>
+<img src="assets\secondlife\inworldnotes\docs\The_27Docs27_button_provides_a_link_to_this_documentation_page2C_ensuring_you_can_always_find_it.jpg"  />
