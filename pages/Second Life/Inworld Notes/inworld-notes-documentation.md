@@ -15,7 +15,7 @@ original product or situation for the most accurate information.
 
 **Security overview**
 
-Please read "[Security overview](https://joltsoftware.miraheze.org/wiki/Second_Life/Inworld_Notes/Security_and_Privacy "Second Life/Inworld Notes/Security and Privacy")" first, before you continue.
+Please read <a href="#inworld-notes-security-privacy.md">Security overview</a> first, before you continue.
 
 ---
 
@@ -139,3 +139,7 @@ The exported notes to email will look something like this.<br>
 **Docs**<br>
 The 'Docs' button provides a link to this documentation page, ensuring you can always find it.<br>
 <img src="assets\secondlife\inworldnotes\docs\The_27Docs27_button_provides_a_link_to_this_documentation_page2C_ensuring_you_can_always_find_it.jpg"  />
+
+**About**<br>
+The 'About' section provides information about this application, including who created it, the version, and where you can find new updates, etc.<br>
+<img src="assets\secondlife\inworldnotes\docs\Theaboutbuttonswiththeneededdinfo.jpg"  />
