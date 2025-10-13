@@ -7,7 +7,7 @@ Inworld Notes is currently a project in development. You may have already purcha
 ## Talk about it!
 
 In this section, you can discuss the product Inworld Notes. Share your thoughts, let us and others know about any bugs and/or errors, and talk to each other about what features you would like to see added to this product. Please make sure to check the roadmap page before submitting a request.<br>
-<a href="https://www.tapatalk.com/groups/jolt/viewtopic.php?f=2&t=3" target="_blank" rel="noopener noreferrer">Talk about it >></a>
+<a href="https://www.reddit.com/r/aldonwiki/comments/1o5e7bt/inworld_notes_a_note_taking_app_for_second_life/" target="_blank" rel="noopener noreferrer">Talk about it >></a>
 
 ---
 
