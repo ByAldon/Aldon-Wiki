@@ -58,6 +58,12 @@
               "categoryId": "3",
               "path": "pages/Second Life/Inworld Notes/inworld-notes-documentation.md"
             },
+                        {
+              "id": "inworld-notes-q-a",
+              "title": "Q & A",
+              "categoryId": "3",
+              "path": "pages/Second Life/Inworld Notes/inworld-notes-q-a.md"
+            },
             {
               "id": "inworld-notes-security-privacy",
               "title": "Security and Privacy",
