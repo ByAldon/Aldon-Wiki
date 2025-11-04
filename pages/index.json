@@ -82,17 +82,11 @@
       "pages": []
     },
     {
-      "id": "exclusive-tutorials",
-      "title": "Exclusive Tutorials",
+      "id": "wordpress",
+      "title": "Wordpress",
       "categoryId": "5",
-      "path": "pages/Exclusive Tutorials/tuts/First place holder.md",
-      "pages": [    {
-      "id": "second-placeholder",
-      "title": "Second Placeholder",
-      "categoryId": "5",
-      "path": "pages/Exclusive Tutorials/tuts/First place holder.md",
+      "path": "pages/Exclusive Tutorials/wordpress/index.md",
       "pages": []
-    }]
     }
   ]
 }
