@@ -14,7 +14,7 @@ At Aldon, I am dedicated to developing innovative applications for the internet.
 
 ## Navigation
 
-- Wordpress and Wordpress Plugins/Themes.
+- Wordpress and Wordpress Plugins/Themes
 - [Second Life](#second-life)
 - Other applications
 - Exclusive Tutorials

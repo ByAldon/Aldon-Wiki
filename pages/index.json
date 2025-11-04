@@ -75,18 +75,24 @@
       ]
     },
     {
-      "id": "first-placeholder",
-      "title": "First Placeholder",
+      "id": "other-applications",
+      "title": "Other Applications",
       "categoryId": "4",
       "path": "pages/Other Applications/First place holder.md",
       "pages": []
     },
     {
+      "id": "exclusive-tutorials",
+      "title": "Exclusive Tutorials",
+      "categoryId": "5",
+      "path": "pages/Exclusive Tutorials/tuts/First place holder.md",
+      "pages": [    {
       "id": "second-placeholder",
       "title": "Second Placeholder",
       "categoryId": "5",
       "path": "pages/Exclusive Tutorials/tuts/First place holder.md",
       "pages": []
+    }]
     }
   ]
 }
