@@ -1,6 +1,1 @@
-## Index
-
-Need some documentation about one of my second life apps?<br>
-Pick one below. 
-
-- [Inworld Notes](#inworld-notes)
+<== To start pick a menu item on the left.
