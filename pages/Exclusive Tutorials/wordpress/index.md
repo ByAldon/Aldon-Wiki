@@ -1,1 +1,1 @@
-index for wordpress
+<== To start, pick a menu item on the left.
