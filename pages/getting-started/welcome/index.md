@@ -20,4 +20,4 @@ Stay tuned for the latest updates and new features! Check back regularly for ann
 
 ## Contact Me
 
-If you have any questions or need assistance, [please feel free to reach out to me](mailto:johntmnlatwork@proton.me). 
+If you have any questions or need assistance, [please feel free to reach out to me](mailto:byaldon@proton.me). 
