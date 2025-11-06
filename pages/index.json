@@ -26,43 +26,45 @@
       "id": "welcome",
       "title": "Welcome!",
       "categoryId": "1",
-      "path": "pages/getting-started/welcome.md"
+      "path": "pages/getting-started/welcome/index.md"
     },
     {
-      "id": "inworld-notes",
-      "title": "Inworld Notes",
+      "id": "huds",
+      "title": "Huds",
       "categoryId": "3",
-      "path": "pages/second-life/inworld-notes/index.md",
+      "path": "pages/second-life/huds/index.md",
       "pages": [
         {
-          "id": "inworld-notes-updates",
-          "title": "Inworld Notes Updates",
+          "id": "inworld-notes",
+          "title": "Inworld Notes",
           "categoryId": "3",
-          "path": "pages/second-life/inworld-notes/inworld-notes-updates.md"
-        },
-        {
-          "id": "inworld-notes-roadmap",
-          "title": "Inworld Notes Roadmap",
-          "categoryId": "3",
-          "path": "pages/second-life/inworld-notes/inworld-notes-roadmap.md"
-        },
-        {
-          "id": "inworld-notes-documentation",
-          "title": "Inworld Notes Docs",
-          "categoryId": "3",
-          "path": "pages/second-life/inworld-notes/inworld-notes-documentation.md"
-        },
-        {
-          "id": "inworld-notes-q-a",
-          "title": "Q & A",
-          "categoryId": "3",
-          "path": "pages/second-life/inworld-notes/inworld-notes-q-a.md"
-        },
-        {
-          "id": "inworld-notes-security-privacy",
-          "title": "Security and Privacy",
-          "categoryId": "3",
-          "path": "pages/second-life/inworld-notes/inworld-notes-security-privacy.md"
+          "path": "pages/second-life/huds/inworld-notes/index.md",
+          "pages": [
+            {
+              "id": "inworld-notes-updates",
+              "title": "Inworld Notes Updates",
+              "categoryId": "3",
+              "path": "pages/second-life/huds/inworld-notes/inworld-notes-updates/index.md"
+            },
+            {
+              "id": "inworld-notes-roadmap",
+              "title": "Inworld Notes Roadmap",
+              "categoryId": "3",
+              "path": "pages/second-life/huds/inworld-notes/inworld-notes-roadmap/index.md"
+            },
+            {
+              "id": "inworld-notes-docs",
+              "title": "Inworld Notes Docs",
+              "categoryId": "3",
+              "path": "pages/second-life/huds/inworld-notes/inworld-notes-docs/index.md"
+            },
+            {
+              "id": "inworld-notes-security-and-privacy",
+              "title": "Security and Privacy",
+              "categoryId": "3",
+              "path": "pages/second-life/huds/inworld-notes/inworld-notes-security-and-privacy/index.md"
+            }
+          ]
         }
       ]
     },
@@ -72,36 +74,35 @@
       "categoryId": "5",
       "path": "pages/exclusive-tutorials/wordpress/index.md",
       "pages": [
-      {
-      "id": "how-to-install-the-plugins",
-      "title": "How to install the plugins",
-      "categoryId": "5",
-      "path": "pages/exclusive-tutorials/wordpress/how-to-install-the-plugins/index.md",
-      "pages": []
+        {
+          "id": "how-to-install-the-plugins",
+          "title": "How to install the plugins",
+          "categoryId": "5",
+          "path": "pages/exclusive-tutorials/wordpress/how-to-install-the-plugins/index.md",
+          "pages": []
+        },
+        {
+          "id": "how-to-remove-a-plugin",
+          "title": "How to remove a plugin",
+          "categoryId": "5",
+          "path": "pages/exclusive-tutorials/wordpress/how-to-remove-a-plugin/index.md",
+          "pages": []
+        }
+      ]
     },
     {
-      "id": "how-to-remove-a-plugin",
-      "title": "How to remove a plugin",
-      "categoryId": "5",
-      "path": "pages/exclusive-tutorials/wordpress/how-to-remove-a-plugin/index.md",
-      "pages": []
-    }
-]
-    },
-    {
-    "id": "ftp",
+      "id": "ftp",
       "title": "FTP",
       "categoryId": "5",
       "path": "pages/exclusive-tutorials/ftp/index.md",
       "pages": [
-
         {
-    "id": "how-to-use-a-ftp-client",
-      "title": "How to use a FTP Client",
-      "categoryId": "5",
-      "path": "pages/exclusive-tutorials/ftp/how-to-use-a-ftp-client.md",
-      "pages": []
-    }
+          "id": "how-to-use-a-ftp-client",
+          "title": "How to use a FTP Client",
+          "categoryId": "5",
+          "path": "pages/exclusive-tutorials/ftp/how-to-use-a-ftp-client/index.md",
+          "pages": []
+        }
       ]
     }
   ]
