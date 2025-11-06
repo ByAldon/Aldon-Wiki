@@ -71,7 +71,15 @@
       "title": "Wordpress",
       "categoryId": "5",
       "path": "pages/Exclusive Tutorials/wordpress/index.md",
+      "pages": [
+      {
+      "id": "how-to-install-the-plugins",
+      "title": "How to install the plugins",
+      "categoryId": "5",
+      "path": "pages/Exclusive Tutorials/wordpress/How to install the plugins/index.md",
       "pages": []
+    }
+]
     }
   ]
 }
