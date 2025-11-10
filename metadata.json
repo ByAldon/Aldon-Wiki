@@ -1,0 +1,5 @@
+{
+  "name": "Aldon Wiki",
+  "description": "A static, read-only wiki application built with React that renders Markdown files from a `/pages` directory. All content is managed by adding or editing local Markdown files.",
+  "requestFramePermissions": []
+}
