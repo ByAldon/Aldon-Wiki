@@ -2,8 +2,8 @@
 
 #### Version v1.2.5
 
-- Documentation link updated
-- Updates link updated
+- In Options Documentation URL updated
+- In Options Updates link updated
 
 ## Unreleased updates
 
