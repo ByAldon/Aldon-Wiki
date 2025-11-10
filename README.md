@@ -1,3 +1,3 @@
 # A github website.
 
-This repo is made for a github [website](https://byaldon.github.io/Aldon-Wiki/).
+This repo is made for a github [website]([Aldon Wiki](https://byaldon.github.io/Aldon-Wiki/)).
