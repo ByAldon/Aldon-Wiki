@@ -56,13 +56,13 @@
               "id": "inworld-notes-docs",
               "title": "Inworld Notes Docs",
               "categoryId": "3",
-              "path": "pages/second-life/huds/inworld-notes/inworld-notes-docs/index.md"
+              "path": "pages/second-Life/huds/inworld-notes/inworld-notes-documentation/index.md"
             },
             {
               "id": "inworld-notes-security-and-privacy",
               "title": "Security and Privacy",
               "categoryId": "3",
-              "path": "pages/second-life/huds/inworld-notes/inworld-notes-security-and-privacy/index.md"
+              "path": "pages/second-Life/huds/inworld-notes/inworld-notes-security-privacy/index.md"
             }
           ]
         }
