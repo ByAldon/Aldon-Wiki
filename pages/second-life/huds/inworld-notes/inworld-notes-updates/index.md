@@ -1,3 +1,10 @@
+## Release updates
+
+#### Version v1.2.5
+
+- Documentation link updated
+- Updates link updated
+
 ## Unreleased updates
 
 #### Version v1.2.4
