@@ -1,4 +1,4 @@
-## Release updates
+## Released updates
 
 #### Version v1.2.5
 
